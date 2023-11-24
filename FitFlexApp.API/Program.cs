@@ -1,8 +1,8 @@
 using FitFlexApp.BLL.Services;
 using FitFlexApp.BLL.Services.Interface;
+using FitFlexApp.DAL.Context;
+using FitFlexApp.DAL.Repository;
 using FitFlexApp.DAL.Repository.Interface;
-using FitFlexxApp.DAL.Context;
-using FitFlexxApp.DAL.Repository;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Serilog;

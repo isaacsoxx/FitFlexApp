@@ -1,9 +1,9 @@
-﻿using FitFlexApp.DAL.Repository.Interface;
-using FitFlexxApp.DAL.Context;
-using FitFlexxApp.DAL.Entities;
+﻿using FitFlexApp.DAL.Context;
+using FitFlexApp.DAL.Entities;
+using FitFlexApp.DAL.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace FitFlexxApp.DAL.Repository
+namespace FitFlexApp.DAL.Repository
 {
     public class FitFlexAppRepository : IFitFlexAppRepository
     {

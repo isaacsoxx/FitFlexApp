@@ -1,7 +1,7 @@
-﻿using FitFlexxApp.DAL.Entities;
+﻿using FitFlexApp.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FitFlexxApp.DAL.Context
+namespace FitFlexApp.DAL.Context
 {
     public class FitFlexAppContext : DbContext
     {
@@ -10,7 +10,8 @@ namespace FitFlexxApp.DAL.Context
 
         public FitFlexAppContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) { 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
             base.OnModelCreating(modelBuilder);
         }
     }

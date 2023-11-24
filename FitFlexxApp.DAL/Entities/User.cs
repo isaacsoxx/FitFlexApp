@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace FitFlexxApp.DAL.Entities
+namespace FitFlexApp.DAL.Entities
 {
     public class User
     {

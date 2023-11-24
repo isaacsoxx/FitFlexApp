@@ -1,4 +1,4 @@
-﻿using FitFlexxApp.DAL.Entities;
+﻿using FitFlexApp.DAL.Entities;
 
 namespace FitFlexApp.DAL.Repository.Interface
 {
