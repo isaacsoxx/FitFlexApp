@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FitFlexApp.DAL.Entities;
 using FitFlexApp.DTOs.Model;
+using FitFlexApp.DTOs.Request;
 
 namespace FitFlexApp.BLL.Profiles
 {
@@ -8,7 +9,8 @@ namespace FitFlexApp.BLL.Profiles
     {
         public PlanProfile()
         {
-            CreateMap<Plan, PlansDTO>();
+            CreateMap<Plan, PlanDTO>();
+            CreateMap<PlanDTO, Plan>();
         }
     }
 }

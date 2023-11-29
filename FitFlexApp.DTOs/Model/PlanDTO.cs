@@ -1,6 +1,6 @@
 ﻿namespace FitFlexApp.DTOs.Model
 {
-    public class PlansDTO
+    public class PlanDTO
     {
         public int Id { get; set; }
         public string Description { get; set; }

@@ -21,5 +21,17 @@ namespace FitFlexApp.DAL.Repository
         {
             return await _context.Users.Include(u => u.Plans).Where(u => u.UserId == userId).FirstOrDefaultAsync();
         }
+
+        public async Task<bool> CreateSingleUserAsync(User user)
+        {
+            await _context.Users.AddAsync(user);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> UpdateSingleUserAsync(User user)
+        {
+            _context.Update(user);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

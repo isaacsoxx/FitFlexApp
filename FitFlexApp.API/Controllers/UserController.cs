@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using FitFlexApp.BLL.Services.Interface;
+using FitFlexApp.DTOs.Request;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitFlexApp.API.Controllers
 {
-    [ApiController]
-    [Route("/api/users")]
+    [Route("/api/[controller]"), ApiController, Produces("application/json")]
     public class UserController : ControllerBase
     {
         private ILogger _logger;
@@ -36,7 +36,7 @@ namespace FitFlexApp.API.Controllers
             }
         }
 
-        [HttpGet("{userId}", Name = "GetUserByID")]
+        [HttpGet("{userId}")]
         public async Task<ActionResult> GetUserById(int userId)
         {
             try
@@ -48,6 +48,34 @@ namespace FitFlexApp.API.Controllers
             catch (Exception ex)
             {
                 _logger.LogCritical($"Exception while fetching the user id {userId}", ex);
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateUser(UserRequestDto user)
+        {
+            try
+            {
+                var serviceResponse = await _userService.CreateSingleUserAsync(user);
+                return serviceResponse.Error ? Ok(serviceResponse.Data) : StatusCode(serviceResponse.StatusCode);
+            } catch (Exception ex)
+            {
+                _logger.LogCritical($"Exception while creating the user id {user.UserId}", ex);
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateUser(UserRequestDto user)
+        {
+            try
+            {
+                var serviceResponse = await _userService.UpdateSingleUserAsync(user);
+                return serviceResponse.Error ? Ok(serviceResponse.Data) : StatusCode(serviceResponse.StatusCode);
+            } catch (Exception ex)
+            {
+                _logger.LogCritical($"Exception while updating the user, id {user.UserId}", ex);
                 return StatusCode(500, ex.Message);
             }
         }

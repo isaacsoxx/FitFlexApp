@@ -1,4 +1,5 @@
 ﻿using FitFlexApp.DTOs.Model;
+using FitFlexApp.DTOs.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace FitFlexApp.BLL.Services.Interface
     {
         Task<ServiceResponseDTO<IEnumerable<UserDTO>>> GetUsersListAsync();
         Task<ServiceResponseDTO<UserIncludePlanDTO>> GetUserByIdIncludePlanAsync(int userId);
+        Task<ServiceResponseDTO<bool>> CreateSingleUserAsync(UserRequestDto user);
+        Task<ServiceResponseDTO<bool>> UpdateSingleUserAsync(UserRequestDto user);
     }
 }

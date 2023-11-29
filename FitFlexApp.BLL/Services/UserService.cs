@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using FitFlexApp.BLL.Services.Interface;
+using FitFlexApp.DAL.Entities;
 using FitFlexApp.DAL.Repository.Interface;
 using FitFlexApp.DTOs.Model;
+using FitFlexApp.DTOs.Request;
 
 namespace FitFlexApp.BLL.Services
 {
@@ -41,5 +43,26 @@ namespace FitFlexApp.BLL.Services
             return serviceResponse;
         }
 
+        public async Task<ServiceResponseDTO<bool>> CreateSingleUserAsync(UserRequestDto user)
+        {
+            var serviceResponse = new ServiceResponseDTO<bool>();
+            var userToCreate = _mapper.Map<User>(user);
+            serviceResponse.Data = await _repository.CreateSingleUserAsync(userToCreate);
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponseDTO<bool>> UpdateSingleUserAsync(UserRequestDto user)
+        {
+            var serviceResponse = new ServiceResponseDTO<bool>();
+            var userToUpdate = await _repository.GetSingleUserIncludePlanAsync(user.UserId);
+
+            if (userToUpdate != null)
+            {
+                _mapper.Map(user, userToUpdate);
+                serviceResponse.Data = await _repository.UpdateSingleUserAsync(_mapper.Map(user, userToUpdate));
+            }
+
+            return serviceResponse;
+        }
     }
 }

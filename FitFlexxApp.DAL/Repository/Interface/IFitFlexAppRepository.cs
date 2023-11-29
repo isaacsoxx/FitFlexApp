@@ -6,5 +6,7 @@ namespace FitFlexApp.DAL.Repository.Interface
     {
         Task<IEnumerable<User>> GetUsersListAsync();
         Task<User?> GetSingleUserIncludePlanAsync(int userId);
+        Task<bool> CreateSingleUserAsync(User user);
+        Task<bool> UpdateSingleUserAsync(User user);
     }
 }

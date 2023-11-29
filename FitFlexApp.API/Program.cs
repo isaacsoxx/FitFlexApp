@@ -35,7 +35,10 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IFitFlexAppRepository, FitFlexAppRepository>();
 
 /* EF persistence on sqlserver */
-builder.Services.AddDbContext<FitFlexAppContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FitFlexDB_MSSQL")));
+builder.Services.AddDbContext<FitFlexAppContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FitFlexDB_MSSQL"));
+    options.EnableSensitiveDataLogging();
+});
 
 builder.Host.UseSerilog();
 
