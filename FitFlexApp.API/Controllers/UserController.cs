@@ -10,12 +10,10 @@ namespace FitFlexApp.API.Controllers
     {
         private ILogger _logger;
         private IUserService _userService;
-        private readonly IMapper _mapper;
 
-        public UserController(ILogger<UserController> logger, IUserService userService, IMapper mapper)
+        public UserController(ILogger<UserController> logger, IUserService userService)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
             /* EF data peristance w/ repository pattern */
             _userService = userService ?? throw new ArgumentNullException();

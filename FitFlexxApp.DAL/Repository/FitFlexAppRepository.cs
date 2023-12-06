@@ -19,7 +19,7 @@ namespace FitFlexApp.DAL.Repository
 
         public async Task<User?> GetSingleUserIncludePlanAsync(int userId)
         {
-            return await _context.Users.Include(u => u.Plans).Where(u => u.UserId == userId).FirstOrDefaultAsync();
+            return await _context.Users.Include(u => u.Plans).Where(u => u.UserId.Equals(userId)).FirstOrDefaultAsync();
         }
 
         public async Task<bool> CreateSingleUserAsync(User user)
@@ -32,6 +32,17 @@ namespace FitFlexApp.DAL.Repository
         {
             _context.Update(user);
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<User?> ValidateUserAsync(string email, string password)
+        {
+            var user = await _context.Users.Where(u => u.Email.Equals(email)).FirstOrDefaultAsync();
+
+            if (user != null && user.Password.Equals(password))
+            {
+                return user;
+            }
+            return null;
         }
     }
 }

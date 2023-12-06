@@ -8,5 +8,6 @@ namespace FitFlexApp.DAL.Repository.Interface
         Task<User?> GetSingleUserIncludePlanAsync(int userId);
         Task<bool> CreateSingleUserAsync(User user);
         Task<bool> UpdateSingleUserAsync(User user);
+        Task<User?> ValidateUserAsync(string username, string password);
     }
 }

@@ -30,6 +30,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 /* Services persistance */
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 /* Repository persistance */
 builder.Services.AddScoped<IFitFlexAppRepository, FitFlexAppRepository>();
