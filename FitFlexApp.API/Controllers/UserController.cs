@@ -1,11 +1,11 @@
-﻿using AutoMapper;
-using FitFlexApp.BLL.Services.Interface;
+﻿using FitFlexApp.BLL.Services.Interface;
 using FitFlexApp.DTOs.Request;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitFlexApp.API.Controllers
 {
-    [Route("/api/[controller]"), ApiController, Produces("application/json")]
+    [Route("/api/[controller]"), ApiController, Produces("application/json"), Authorize]
     public class UserController : ControllerBase
     {
         private ILogger _logger;
@@ -40,7 +40,6 @@ namespace FitFlexApp.API.Controllers
             try
             {
                 var serviceResponse = await _userService.GetUserByIdIncludePlanAsync(userId);
-
                 return serviceResponse.Error ? StatusCode(serviceResponse.StatusCode, serviceResponse.Message) : Ok(serviceResponse.Data);
             }
             catch (Exception ex)
@@ -56,7 +55,14 @@ namespace FitFlexApp.API.Controllers
             try
             {
                 var serviceResponse = await _userService.CreateSingleUserAsync(user);
-                return serviceResponse.Error ? Ok(serviceResponse.Data) : StatusCode(serviceResponse.StatusCode);
+                if (serviceResponse.Error)
+                {
+                    return StatusCode(serviceResponse.StatusCode, serviceResponse.Message);
+                }
+
+                var activeUser = User.Claims.FirstOrDefault(c => c.Type.Equals("email_address"))?.Value;
+                _logger.LogInformation($"HTTP POST request made by {activeUser}");
+                return Ok(serviceResponse.Data);
             } catch (Exception ex)
             {
                 _logger.LogCritical($"Exception while creating the user id {user.UserId}", ex);
@@ -70,7 +76,14 @@ namespace FitFlexApp.API.Controllers
             try
             {
                 var serviceResponse = await _userService.UpdateSingleUserAsync(user);
-                return serviceResponse.Error ? Ok(serviceResponse.Data) : StatusCode(serviceResponse.StatusCode);
+
+                if (serviceResponse.Error) { 
+                    return StatusCode(serviceResponse.StatusCode);
+                }
+
+                var activeUser = User.Claims.FirstOrDefault(c => c.Type.Equals("email_address"))?.Value;
+                _logger.LogInformation($"HTTP PUT request made by {activeUser}");
+                return Ok(serviceResponse.Data);
             } catch (Exception ex)
             {
                 _logger.LogCritical($"Exception while updating the user, id {user.UserId}", ex);
