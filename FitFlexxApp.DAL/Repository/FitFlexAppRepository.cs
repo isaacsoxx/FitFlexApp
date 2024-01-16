@@ -19,7 +19,7 @@ namespace FitFlexApp.DAL.Repository
 
         public async Task<User?> GetSingleUserIncludePlanAsync(int userId)
         {
-            return await _context.Users.Include(u => u.Plans).Where(u => u.UserId.Equals(userId)).FirstOrDefaultAsync();
+            return await _context.Users.Include(u => u.UserAccessPlans).Where(u => u.UserId.Equals(userId)).FirstOrDefaultAsync();
         }
 
         public async Task<bool> CreateSingleUserAsync(User user)

@@ -16,6 +16,7 @@ namespace FitFlexApp.DAL.Entities
         public string? LastName { set; get; } = string.Empty;
         [Required]
         public string Password { get; set; } = string.Empty;
-        public ICollection<Plan> Plans { set; get; } = new List<Plan>();
+        // child properties
+        public ICollection<UserAccessPlan> UserAccessPlans { get; set; } = new List<UserAccessPlan>();
     }
 }

@@ -8,12 +8,14 @@ namespace FitFlexApp.DAL.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [ForeignKey("UserId")]
-        public User? User { get; set; }
-        public int UserId { get; set; }
         [MaxLength(100)]
         public string? Description { get; set; }
-        [Required]
-        public int Type { get; set; }
+        [ForeignKey("PlanTypeId")]
+        public PlanType? PlanType { get; set; }
+        public int PlanTypeId { get; set; }
+        // parent entity mapping properties
+        [ForeignKey("UserAccessPlanId")]
+        public UserAccessPlan? UserAccessPlan { get; set; }
+        public int UserAccessPlanId { get; set; }
     }
 }

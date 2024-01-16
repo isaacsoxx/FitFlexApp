@@ -3,6 +3,7 @@ using FitFlexApp.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitFlexxApp.DAL.Migrations
 {
     [DbContext(typeof(FitFlexAppContext))]
-    partial class FitFlexAppContextModelSnapshot : ModelSnapshot
+    [Migration("20240116052350_FitFlexDBUserAccessUpdate")]
+    partial class FitFlexDBUserAccessUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +35,7 @@ namespace FitFlexxApp.DAL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("PlanTypeId")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.Property<int>("UserAccessPlanId")
@@ -41,28 +43,9 @@ namespace FitFlexxApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlanTypeId");
-
                     b.HasIndex("UserAccessPlanId");
 
                     b.ToTable("Plans");
-                });
-
-            modelBuilder.Entity("FitFlexApp.DAL.Entities.PlanType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PlanType");
                 });
 
             modelBuilder.Entity("FitFlexApp.DAL.Entities.User", b =>
@@ -125,19 +108,11 @@ namespace FitFlexxApp.DAL.Migrations
 
             modelBuilder.Entity("FitFlexApp.DAL.Entities.Plan", b =>
                 {
-                    b.HasOne("FitFlexApp.DAL.Entities.PlanType", "PlanType")
-                        .WithMany()
-                        .HasForeignKey("PlanTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FitFlexApp.DAL.Entities.UserAccessPlan", "UserAccessPlan")
                         .WithMany("Plans")
                         .HasForeignKey("UserAccessPlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("PlanType");
 
                     b.Navigation("UserAccessPlan");
                 });
