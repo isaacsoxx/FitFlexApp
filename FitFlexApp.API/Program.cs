@@ -82,7 +82,7 @@ builder.Services.AddScoped<IFitFlexAppRepository, FitFlexAppRepository>();
 
 /* EF persistence on sqlserver */
 builder.Services.AddDbContext<FitFlexAppContext>(options => {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FitFlexDB_MSSMS"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("FitFlexDB_SQLite"));
     options.EnableSensitiveDataLogging();
 });
 

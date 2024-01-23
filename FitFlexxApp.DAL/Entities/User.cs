@@ -11,10 +11,14 @@ namespace FitFlexApp.DAL.Entities
         [Required]
         public int UserId { set; get; }
         [Required]
+        [MaxLength(128)]
         public string Email { set; get; } = string.Empty;
+        [MaxLength(128)]
         public string? FirstName { set; get; } = string.Empty;
+        [MaxLength(128)]
         public string? LastName { set; get; } = string.Empty;
         [Required]
+        [MaxLength(128)]
         public string Password { get; set; } = string.Empty;
         // child properties
         public ICollection<UserAccessPlan> UserAccessPlans { get; set; } = new List<UserAccessPlan>();

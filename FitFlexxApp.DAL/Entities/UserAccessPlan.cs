@@ -15,6 +15,7 @@ namespace FitFlexApp.DAL.Entities
         public int Id { get; set; }
         [Required]
         public int AccessFee { set; get; }
+        [MaxLength(128)]
         public string Description { set; get; } = string.Empty;
         // self referencing navigation properties
         // [ForeignKey("InstructorId")]
