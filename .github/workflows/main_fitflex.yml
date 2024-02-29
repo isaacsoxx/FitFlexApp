@@ -29,7 +29,7 @@ jobs:
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/fitflex
 
       - name: dotnet install
-        run: dotnet tool install -g dotnet-ef --version 6
+        run: dotnet tool install -g dotnet-ef --version 6.0.27
 
       - name: database migrations start
         run: dotnet ef migrations bundle --runtime linux-x64 --startup-project ./FitFlexApp.API/  --project ./FitFlexxApp.DAL/ -o ${{env.DOTNET_ROOT}}/fitflex/migrate
