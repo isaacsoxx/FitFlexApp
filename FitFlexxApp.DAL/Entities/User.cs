@@ -21,6 +21,6 @@ namespace FitFlexApp.DAL.Entities
         [MaxLength(128)]
         public string Password { get; set; } = string.Empty;
         // child properties
-        public ICollection<UserAccessPlan> UserAccessPlans { get; set; } = new List<UserAccessPlan>();
+        public ICollection<UserSubscriptionPlan> UserSubscriptionPlans { get; set; } = new List<UserSubscriptionPlan>();
     }
 }

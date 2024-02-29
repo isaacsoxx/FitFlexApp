@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitFlexApp.DAL.Entities
 {
-    public class UserAccessPlan
+    public class UserSubscriptionPlan
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,13 +18,13 @@ namespace FitFlexApp.DAL.Entities
         [MaxLength(128)]
         public string Description { set; get; } = string.Empty;
         // self referencing navigation properties
+        public int InstructorId { get; set; }
         // [ForeignKey("InstructorId")]
         // public User? Instructor { get; set; }
-        public int InstructorId { get; set; }
         // parent entity navigation properties
+        public int UserId { get; set; }
         [ForeignKey("UserId")]
         public User? User { get; set; }
-        public int UserId { get; set; }
         // child properties
         public ICollection<Plan> Plans { set; get; } = new List<Plan>();
     }

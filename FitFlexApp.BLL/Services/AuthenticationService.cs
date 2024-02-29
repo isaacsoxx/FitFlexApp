@@ -7,10 +7,10 @@ namespace FitFlexApp.BLL.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly IFitFlexAppRepository _repository;
+        private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
 
-        public AuthenticationService(IFitFlexAppRepository repository, IMapper mapper)
+        public AuthenticationService(IUserRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

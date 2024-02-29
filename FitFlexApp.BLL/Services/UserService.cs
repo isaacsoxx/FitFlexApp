@@ -9,10 +9,10 @@ namespace FitFlexApp.BLL.Services
 {
     public class UserService : IUserService
     {
-        private readonly IFitFlexAppRepository _repository;
+        private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
 
-        public UserService(IFitFlexAppRepository repository, IMapper mapper)
+        public UserService(IUserRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

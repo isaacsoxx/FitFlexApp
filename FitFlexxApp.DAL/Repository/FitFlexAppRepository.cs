@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FitFlexApp.DAL.Repository
 {
-    public class FitFlexAppRepository : IFitFlexAppRepository
+    public class UserRepository : IUserRepository
     {
         private readonly FitFlexAppContext _context;
-        public FitFlexAppRepository(FitFlexAppContext context)
+        public UserRepository(FitFlexAppContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -19,7 +19,7 @@ namespace FitFlexApp.DAL.Repository
 
         public async Task<User?> GetSingleUserIncludePlanAsync(int userId)
         {
-            return await _context.Users.Include(u => u.UserAccessPlans).Where(u => u.UserId.Equals(userId)).FirstOrDefaultAsync();
+            return await _context.Users.Include(u => u.UserSubscriptionPlans).Where(u => u.UserId.Equals(userId)).FirstOrDefaultAsync();
         }
 
         public async Task<bool> CreateSingleUserAsync(User user)

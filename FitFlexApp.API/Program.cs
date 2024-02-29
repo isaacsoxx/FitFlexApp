@@ -78,7 +78,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 /* Repository persistance */
-builder.Services.AddScoped<IFitFlexAppRepository, FitFlexAppRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 /* EF persistence on sqlserver */
 builder.Services.AddDbContext<FitFlexAppContext>(options => {

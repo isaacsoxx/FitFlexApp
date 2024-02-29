@@ -2,7 +2,7 @@
 
 namespace FitFlexApp.DAL.Repository.Interface
 {
-    public interface IFitFlexAppRepository
+    public interface IUserRepository
     {
         Task<IEnumerable<User>> GetUsersListAsync();
         Task<User?> GetSingleUserIncludePlanAsync(int userId);
