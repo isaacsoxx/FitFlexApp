@@ -32,7 +32,7 @@ jobs:
         run: dotnet tool install -g dotnet-ef --version 6
 
       - name: database migrations start
-        run: dotnet ef migrations bundle --runtime linux-x64 --startup-project ./FitFlexApp.API/  --project ./FitFlexxApp.DAL/
+        run: dotnet ef migrations bundle --runtime linux-x64 --startup-project ./FitFlexApp.API/  --project ./FitFlexxApp.DAL/ -o ${{env.DOTNET_ROOT}}/fitflex/migrate
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
