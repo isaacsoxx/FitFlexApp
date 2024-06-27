@@ -9,8 +9,8 @@ namespace FitFlexApp.BLL.Profiles
     {
         public PlanProfile()
         {
-            CreateMap<Plan, PlanDTO>();
-            CreateMap<PlanDTO, Plan>();
+            CreateMap<TrainingPlan, PlanDTO>();
+            CreateMap<PlanDTO, TrainingPlan>();
         }
     }
 }

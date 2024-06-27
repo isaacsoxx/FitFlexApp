@@ -28,7 +28,7 @@ namespace FitFlexApp.BLL.Services
         public async Task<ServiceResponseDTO<UserIncludePlanDTO>> GetUserByIdIncludePlanAsync(int userId)
         {
             var serviceResponse = new ServiceResponseDTO<UserIncludePlanDTO>();
-            var user = await _repository.GetSingleUserIncludePlanAsync(userId);
+            var user = await _repository.GetSingleUserIncludeTrainingPlansAsync(userId);
 
             if (user != null)
             {
@@ -54,7 +54,7 @@ namespace FitFlexApp.BLL.Services
         public async Task<ServiceResponseDTO<bool>> UpdateSingleUserAsync(UserRequestDto user)
         {
             var serviceResponse = new ServiceResponseDTO<bool>();
-            var userToUpdate = await _repository.GetSingleUserIncludePlanAsync(user.UserId);
+            var userToUpdate = await _repository.GetSingleUserIncludeTrainingPlansAsync(user.UserId);
 
             if (userToUpdate != null)
             {

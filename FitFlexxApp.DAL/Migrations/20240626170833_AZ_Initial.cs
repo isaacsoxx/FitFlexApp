@@ -4,17 +4,19 @@
 
 namespace FitFlexApp.DAL.Migrations
 {
-    public partial class FitFlexDBSQLiteImpl : Migration
+    /// <inheritdoc />
+    public partial class AZ_Initial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "PlanType",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,13 +27,13 @@ namespace FitFlexApp.DAL.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    Password = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,21 +41,21 @@ namespace FitFlexApp.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAccessPlans",
+                name: "UserSubscriptionPlans",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AccessFee = table.Column<int>(type: "INTEGER", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    InstructorId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AccessFee = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    InstructorId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAccessPlans", x => x.Id);
+                    table.PrimaryKey("PK_UserSubscriptionPlans", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserAccessPlans_Users_UserId",
+                        name: "FK_UserSubscriptionPlans_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -64,11 +66,11 @@ namespace FitFlexApp.DAL.Migrations
                 name: "Plans",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Description = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
-                    PlanTypeId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserAccessPlanId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PlanTypeId = table.Column<int>(type: "int", nullable: false),
+                    UserSubscriptionPlanId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,9 +82,9 @@ namespace FitFlexApp.DAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Plans_UserAccessPlans_UserAccessPlanId",
-                        column: x => x.UserAccessPlanId,
-                        principalTable: "UserAccessPlans",
+                        name: "FK_Plans_UserSubscriptionPlans_UserSubscriptionPlanId",
+                        column: x => x.UserSubscriptionPlanId,
+                        principalTable: "UserSubscriptionPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -93,16 +95,17 @@ namespace FitFlexApp.DAL.Migrations
                 column: "PlanTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Plans_UserAccessPlanId",
+                name: "IX_Plans_UserSubscriptionPlanId",
                 table: "Plans",
-                column: "UserAccessPlanId");
+                column: "UserSubscriptionPlanId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserAccessPlans_UserId",
-                table: "UserAccessPlans",
+                name: "IX_UserSubscriptionPlans_UserId",
+                table: "UserSubscriptionPlans",
                 column: "UserId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
@@ -112,7 +115,7 @@ namespace FitFlexApp.DAL.Migrations
                 name: "PlanType");
 
             migrationBuilder.DropTable(
-                name: "UserAccessPlans");
+                name: "UserSubscriptionPlans");
 
             migrationBuilder.DropTable(
                 name: "Users");
