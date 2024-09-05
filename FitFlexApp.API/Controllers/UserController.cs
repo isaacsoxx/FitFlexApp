@@ -11,6 +11,7 @@ namespace FitFlexApp.API.Controllers
         private ILogger _logger;
         private IUserService _userService;
 
+// Generic comment to detect changes and submit deployment
         public UserController(ILogger<UserController> logger, IUserService userService)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
