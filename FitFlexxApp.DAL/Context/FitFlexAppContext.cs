@@ -8,6 +8,7 @@ namespace FitFlexApp.DAL.Context
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<TrainingPlan> TrainingPlans { get; set; } = null!;
         public DbSet<TrainingPlanType> TrainingPlanTypes { get; set; } = null!;
+        public DbSet<AccessLevel> AccessLevel { get; set; } = null!;
 
         public FitFlexAppContext(DbContextOptions<FitFlexAppContext> options) : base(options) { }
 

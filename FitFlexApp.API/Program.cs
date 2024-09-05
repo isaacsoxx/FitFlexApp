@@ -80,7 +80,7 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 /* Repository persistance */
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-/* EF persistence on sqlserver */
+/* EF persistence on azsql */
 builder.Services.AddDbContext<FitFlexAppContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("AZ_FitFlexDB"));
     options.EnableSensitiveDataLogging();

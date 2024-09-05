@@ -36,7 +36,7 @@ namespace FitFlexApp.DAL.Repository
 
         public async Task<User?> ValidateUserAsync(string email, string password)
         {
-            var user = await _context.Users.Where(u => u.Email.Equals(email)).FirstOrDefaultAsync();
+            var user = await _context.Users.Where(u => u.Email.Equals(email)).Include(u => u.AccessLevel).FirstOrDefaultAsync();
 
             if (user != null && user.Password.Equals(password))
             {

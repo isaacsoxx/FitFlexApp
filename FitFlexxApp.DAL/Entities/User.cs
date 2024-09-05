@@ -21,6 +21,11 @@ namespace FitFlexApp.DAL.Entities
         [MaxLength(128)]
         public string Password { get; set; } = string.Empty;
 
+        [ForeignKey("AccessLevelId")]
+        public AccessLevel? AccessLevel { get; set; } = null;
+        public int? AccessLevelId { get; set; } = null;
+
         public List<TrainingPlan>? TrainingPlans {get; set;} = null;
+        
     }
 }

@@ -9,13 +9,14 @@ namespace FitFlexApp.DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [MaxLength(100)]
-        public string? Name { get; set; }
+        public string Name { get; set; } = String.Empty;
+
         [ForeignKey("TrainingPlanTypeId")]
         public TrainingPlanType? TrainingPlanType { get; set; }
         public int TrainingPlanTypeId { get; set; }
 
-        [ForeignKey("UserId")]
+        [ForeignKey("CoachUserId")]
         public User? CoachUser { get; set; }
-        public int UserId { get; set; }
+        public int CoachUserId { get; set; }
     }
 }

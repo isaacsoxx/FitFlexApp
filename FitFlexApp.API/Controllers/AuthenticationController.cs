@@ -36,6 +36,7 @@ namespace FitFlexApp.API.Controllers
                     var claimsForToken = new List<Claim>();
                     claimsForToken.Add(new Claim("sub", serviceResponse.Data.UserId.ToString()));
                     claimsForToken.Add(new Claim("email_address", serviceResponse.Data.Email));
+                    claimsForToken.Add(new Claim("access_level", serviceResponse.Data.AccessLevel.Name));
 
                     var jwtSecurityToken = new JwtSecurityToken(
                         _configuration["Authentication:Issuer"],
