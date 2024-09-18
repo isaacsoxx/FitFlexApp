@@ -24,9 +24,6 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: dotnet debug
-        run: echo ${{env.DOTNET_ROOT}}
-
       - name: dotnet publish
         run: dotnet publish -c Release -o ./myapp
 
