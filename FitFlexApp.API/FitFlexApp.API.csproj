@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <_FunctionsSkipCleanOutput>true</_FunctionsSkipCleanOutput>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
   </PropertyGroup>
 
   <ItemGroup>
