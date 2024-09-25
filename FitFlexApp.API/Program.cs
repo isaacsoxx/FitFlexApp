@@ -1,3 +1,4 @@
+using FitFlexApp.BLL.Exceptions;
 using FitFlexApp.BLL.Services;
 using FitFlexApp.BLL.Services.Interface;
 using FitFlexApp.DAL.Context;
@@ -93,6 +94,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
 // {
+// Catch any exception
+    app.UseMiddleware<CustomException>();
     app.UseSwagger();
     app.UseSwaggerUI();
 // }
