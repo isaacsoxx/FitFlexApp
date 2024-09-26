@@ -8,17 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <FunctionsPreservedDependencies  Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
-    <FunctionsPreservedDependencies  Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5">
+    <PackageReference  Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
+    <PackageReference  Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </FunctionsPreservedDependencies >
-    <FunctionsPreservedDependencies  Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.5" />
-    <FunctionsPreservedDependencies  Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
-    <FunctionsPreservedDependencies  Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
+    </PackageReference >
+    <PackageReference  Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.5" />
+    <PackageReference  Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
+    <PackageReference  Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </FunctionsPreservedDependencies >
+    </PackageReference >
   </ItemGroup>
 
   <ItemGroup>
